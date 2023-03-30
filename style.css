@@ -1,0 +1,130 @@
+:root {
+  --main-bg-col: #faf8ef;
+  --title-text-col: #776e65;
+  --label-bg-col: #bbada0;
+  --grid-border-col:#bbada0;
+  --grid-bg-col: rgba(238, 228, 218, 100);
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: var(--main-bg-col);
+}
+
+content {
+  display: block;
+  width: 500px;
+  height: 800px;
+}
+
+header,
+.grid-container,
+.game-instructions {
+  width: 500px;
+}
+
+.header-top,
+.header-bot {
+  display: flex;
+  align-items: flex-start;
+  width: 500px;
+}
+
+.header-top {
+  height: 100px;
+}
+
+.header-bot {
+  height: 45px;
+}
+
+.title {
+  align-self: stretch;
+  font-weight: 600;
+  font-size: 4rem;
+  color: var(--title-text-col);
+  padding: 2px;
+}
+
+.score-container, 
+.highscore-container {
+  display: block;
+  float: right;
+  background-color: var(--label-bg-col);
+  width: 100px;
+  height: 70px;
+  margin: 5px;
+  border-radius: 3px;
+}
+
+.score-label {
+  text-align: center;
+  font-size: 0.8rem;
+  line-height: 1rem;
+  font-weight: 800;
+  margin-top: 10%; 
+}
+
+.score-num {
+  text-align: center;
+  color: white;
+  font-weight: 800;
+  font-size: 2rem;
+  margin-bottom: 2px;
+}
+
+.new-game-container {
+  height: 2.5rem;
+  width: 125px;
+}
+
+button {
+  border: none;
+  border-radius: 3px;
+  font-size: 1rem;
+  font-weight:bold;
+  height: 100%;
+  width: 100%;
+  color: white;
+  background-color: var(--title-text-col);
+}
+
+
+
+.game-grid-container {
+  background-color: var(--grid-border-col);
+  border-radius: 5px;
+  width: 500px;
+  height: 500px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  column-gap: 10px;
+  row-gap: 10px;
+  width: 480px;
+  height: 480px;
+  border: solid 10px var(--grid-border-col);
+  border-radius: 5px;
+}
+
+.grid-box {
+  background-color: white;
+  border-radius: 5px;
+}
+
+.grid-box-background {
+  background-color: var(--grid-bg-col);
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  border-radius: 5px;
+}
+
+.grid-box-tile {
+  z-index: 100;
+}

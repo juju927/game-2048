@@ -67,16 +67,32 @@ function moveBox(boxFrom, boxTo) {
   }
 }
 
+
+
 const rowOne = document.querySelectorAll(".row1");
 console.log(rowOne);
 
-for (let i = 1; i < rowOne.length; i++) {
-  let j = i;
-  console.log(i);
-  while (!moveBox(rowOne[j], rowOne[j-1]).classList.contains("col1")) {
-    j--;
-    console.log(`from: ${rowOne[j]} to: ${rowOne[j-1]} j is ${j}`);
-  }
-};
+for (let rowNum = 1; rowNum <= 4; rowNum++) {
+  const row = document.querySelectorAll(".row"+rowNum);
+  console.log(row);
+
+  for (let i = 1; i < row.length; i++) {
+    let j = i;
+    console.log(i);
+    while (!moveBox(row[j], row[j-1]).classList.contains("col1")) {
+      j--;
+      console.log(`from: ${row[j]} to: ${row[j-1]} j is ${j}`);
+    }
+  };
+}
+
+// for (let i = 1; i < rowOne.length; i++) {
+//   let j = i;
+//   console.log(i);
+//   while (!moveBox(rowOne[j], rowOne[j-1]).classList.contains("col1")) {
+//     j--;
+//     console.log(`from: ${rowOne[j]} to: ${rowOne[j-1]} j is ${j}`);
+//   }
+// };
 
 // event listeners

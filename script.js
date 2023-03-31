@@ -27,6 +27,7 @@ function createNewTile() {
   const index = Math.floor(Math.random() * emptyGridBoxes.length); 
   const elementToEdit = emptyGridBoxes[index];
   elementToEdit.innerText = chooseNewTileNumber();
+  elementToEdit.classList.add("tile-"+elementToEdit.innerText);
   elementToEdit.classList.add("grid-box-tile");
   elementToEdit.classList.add("new");
 }
@@ -47,10 +48,13 @@ function moveBox(boxFrom, boxTo) {
       if (boxTo.innerText == boxFrom.innerText) {
         // boxTo's number is same as boxFrom's -> merge boxFrom's and boxTo's numbers
         // 1 - boxTo's number * 2
+        boxTo.classList.remove("tile-"+boxTo.innerText);
         boxTo.innerText = Number(boxTo.innerText)*2;
+        boxTo.classList.add("tile-"+boxTo.innerText);
           // and add that to score
         score += Number(boxTo.innerText);
         // 2 - remove boxFrom's number
+        boxFrom.classList.remove("tile-"+boxFrom.innerText);
         boxFrom.innerText = "";
         // 3 - add merged class to boxTo
         boxTo.classList.add("merged");
@@ -71,8 +75,10 @@ function moveBox(boxFrom, boxTo) {
   } else {
     // boxTo doesn't have number -> take boxTo's spot
     // 1 - move number
+    boxFrom.classList.remove("tile-"+boxFrom.innerText);
     boxTo.innerText = boxFrom.innerText;
     boxFrom.innerText = "";
+    boxTo.classList.add("tile-"+boxTo.innerText);
     // 2 - move class grid-box-tile
     boxTo.classList.add("grid-box-tile");
     boxFrom.classList.remove("grid-box-tile");
@@ -153,6 +159,9 @@ function resetNumbers() {
   for (gridBox of gridBoxes) {
     gridBox.classList.remove("merged");
     gridBox.classList.remove("grid-box-tile");
+    for (num of [2,4,8,16,32,64,128,256,512,1024,2048]){
+      gridBox.classList.remove("tile-"+num);
+    }
     gridBox.innerHTML = "";
   }
 }

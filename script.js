@@ -126,37 +126,24 @@ function push(direction) {
   }
 };
 
-push("down");
-
-
-// for (let rowNum = 1; rowNum <= 4; rowNum++) {
-//   const row = document.querySelectorAll(".row"+rowNum);
-//   console.log(row);
-
-//   for (let i = 1; i < row.length; i++) {
-//     let j = i;
-//     console.log(i);
-//     while (!moveBox(row[j], row[j-1]).classList.contains("col1")) {
-//       j--;
-//       console.log(`from: ${row[j]} to: ${row[j-1]} j is ${j}`);
-//     }
-//   };
-// }
-
-// for (let colNum = 1; colNum <= 4; colNum++) {
-//   const col = document.querySelectorAll(".col"+colNum);
-//   console.log(col);
-
-//   for (let i = 1; i < col.length; i++) {
-//     let j = i;
-//     console.log(i);
-//     while (!moveBox(col[j], col[j-1]).classList.contains("row1")) {
-//       j--;
-//       console.log(`from: ${col[j]} to: ${col[j-1]} j is ${j}`);
-//     }
-//   };
-// }
-
-
+function resetMerge() {
+  for (gridBox of gridBoxes) {
+    gridBox.classList.remove("merged");
+  }
+}
 
 // event listeners
+document.addEventListener("keydown", function(e) {
+  if (e.key == "ArrowLeft") {
+    push("left");
+  } else if (e.key == "ArrowRight") {
+    push("right");
+  } else if (e.key == "ArrowDown") {
+    push("down");
+  } else if (e.key == "ArrowUp") {
+    push("up");
+  }
+  createNewTile();
+  resetMerge();
+  return;
+})

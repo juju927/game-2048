@@ -101,6 +101,10 @@ button {
   background-color: var(--title-text-col);
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 .game-grid-container {
   background-color: var(--grid-border-col);
   border-radius: 5px;

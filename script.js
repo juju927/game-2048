@@ -176,6 +176,8 @@ function updateScores() {
 // event listeners
 document.querySelector("button").addEventListener("click", function() {
   startNewGame();
+  score = 0;
+  updateScores();
 });
 
 document.addEventListener("keydown", function(e) {

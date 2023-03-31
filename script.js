@@ -69,9 +69,6 @@ function moveBox(boxFrom, boxTo) {
 
 
 
-const rowOne = document.querySelectorAll(".row1");
-console.log(rowOne);
-
 for (let rowNum = 1; rowNum <= 4; rowNum++) {
   const row = document.querySelectorAll(".row"+rowNum);
   console.log(row);
@@ -86,13 +83,20 @@ for (let rowNum = 1; rowNum <= 4; rowNum++) {
   };
 }
 
-// for (let i = 1; i < rowOne.length; i++) {
-//   let j = i;
-//   console.log(i);
-//   while (!moveBox(rowOne[j], rowOne[j-1]).classList.contains("col1")) {
-//     j--;
-//     console.log(`from: ${rowOne[j]} to: ${rowOne[j-1]} j is ${j}`);
-//   }
-// };
+for (let colNum = 1; colNum <= 4; colNum++) {
+  const col = document.querySelectorAll(".col"+colNum);
+  console.log(col);
+
+  for (let i = 1; i < col.length; i++) {
+    let j = i;
+    console.log(i);
+    while (!moveBox(col[j], col[j-1]).classList.contains("row1")) {
+      j--;
+      console.log(`from: ${col[j]} to: ${col[j-1]} j is ${j}`);
+    }
+  };
+}
+
+
 
 // event listeners

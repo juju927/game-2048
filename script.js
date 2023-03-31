@@ -105,8 +105,8 @@ function push(direction) {
   for (let k = 1; k <= 4; k++) {
     // get all divs in each row/ column (along pushed axis)
     const rowOrCol = document.querySelectorAll("."+axis+k);
-
     if (direction == "left" || direction == "up") {
+      // towards lower number row/col
       for (let i = 1; i < rowOrCol.length; i++) {
         let j = i;
         while (!moveBox(rowOrCol[j], rowOrCol[j-1]).classList.contains(lastLine)) {
@@ -115,6 +115,7 @@ function push(direction) {
         }
       }
     } else {
+      // towards higher number row/col
       for (let i = 3; i > 0; i--) {
         let j = i;
         while (!moveBox(rowOrCol[j-1], rowOrCol[j]).classList.contains(lastLine)) {
@@ -132,8 +133,32 @@ function resetMerge() {
   }
 }
 
+function resetNumbers() {
+  for (gridBox of gridBoxes) {
+    gridBox.classList.remove("merged");
+    gridBox.classList.remove("grid-box-tile");
+    gridBox.innerHTML = "";
+  }
+}
+
+function startNewGame() {
+  resetNumbers();
+  resetMerge();
+  createNewTile();
+  createNewTile();
+}
+
 // event listeners
+document.querySelector("button").addEventListener("click", function() {
+  startNewGame();
+});
+
 document.addEventListener("keydown", function(e) {
+  // if ((e.key != "ArrowLeft") || (e.key != "ArrowRight") || (e.key != "ArrowUp") || (e.key != "ArrowDown")) {
+  //   // ignore if not arrow key
+  //   return;
+  // }
+  
   if (e.key == "ArrowLeft") {
     push("left");
   } else if (e.key == "ArrowRight") {

@@ -130,7 +130,6 @@ button {
   border-radius: 5px;
 }
 
-
 .grid-box-tile {
   font-size: 3rem;
   line-height: 112.5px;
@@ -139,13 +138,27 @@ button {
   color: var(--title-text-col);
   background-color: lightskyblue;
   z-index: 100;
+
 }
 
 .new {
-  animation-name: pop-in;
+  animation-name: pop-new;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
 }
 
-@keyframes pop-in {
-  0% { opacity: 0; transform: scale(0.1); }
-  100% { opacity: 1; transform: scale(1); }
+@keyframes pop-new {
+  0%    { font-size: 0rem; scale: 0; }
+  100%  { font-size: 3rem; scale: 1; }
+}
+
+.merged {
+  animation-name: pop-merged;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-out;
+}
+
+@keyframes pop-merged {
+  0%    { font-size: 4rem; scale: 1.2; }
+  100%  { font-size: 3rem; scale: 1; }
 }

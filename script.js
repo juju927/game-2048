@@ -29,7 +29,7 @@ function moveBox(boxFrom, boxTo) {
 // this will return true if box has reached final spot, false if not yet
   if (!boxFrom.classList.contains("grid-box-tile")) {
     // ignore boxFrom if it does not have a number
-    return true;   
+    return true; 
   }
 
   // --- under this line means boxFrom contains a number ---
@@ -38,7 +38,7 @@ function moveBox(boxFrom, boxTo) {
     if (!(boxTo.classList.contains("merged"))) {
       // boxTo's number is not a merged one
       if (boxTo.innerText == boxFrom.innerText) {
-        // boxTo's number is same as boxFrom -> merge boxFrom's and boxTo's numbers
+        // boxTo's number is same as boxFrom's -> merge boxFrom's and boxTo's numbers
         // 1 - boxTo's number * 2
         boxTo.innerText = Number(boxTo.innerText)*2;
         // 2 - remove boxFrom's number
@@ -48,12 +48,14 @@ function moveBox(boxFrom, boxTo) {
         // 4 - remove grid-box-tile from boxFrom
         boxFrom.classList.remove("grid-box-tile");
         return true; // final spot -> merged tile
+      } else {
+        // boxTo's number is different from boxFrom's -> do nothing
+        return true; 
       }
     } else {
       // boxTo's number is a merged one
-      return true 
+      return true;
     }
-
   } else {
     // boxTo doesn't have number
     // 1 - move number
@@ -62,7 +64,7 @@ function moveBox(boxFrom, boxTo) {
     // 2 - move class grid-box-tile
     boxTo.classList.add("grid-box-tile");
     boxFrom.classList.remove("grid-box-tile");
-    return false;
+    return false; 
   }
 }
 

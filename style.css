@@ -10,6 +10,10 @@ body {
   font-family: 'Open Sans', sans-serif;
   background-color: var(--main-bg-col);
   color: #776e65;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 content {
@@ -135,4 +139,13 @@ button {
   color: var(--title-text-col);
   background-color: lightskyblue;
   z-index: 100;
+}
+
+.new {
+  animation-name: pop-in;
+}
+
+@keyframes pop-in {
+  0% { opacity: 0; transform: scale(0.1); }
+  100% { opacity: 1; transform: scale(1); }
 }

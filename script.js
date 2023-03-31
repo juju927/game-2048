@@ -1,12 +1,19 @@
 // variables
+let madeMove = false;
+let score = 0;
+let highscore = 0;
+
 const gameGridEl = document.querySelector('.game-grid');
 const gridBoxes = document.querySelectorAll('.grid-box');
+
+const scoreUI = document.querySelector('#score');
+const highscoreUI = document.querySelector('#highscore');
 
 // functions
 function chooseNewTileNumber() {
   // return either 2 or 4
   return [2, 4][Math.round(Math.random())];
-};
+}
 
 function createNewTile() {
   // to get empty grid boxes (filter out ones with tiles)
@@ -21,7 +28,8 @@ function createNewTile() {
   const elementToEdit = emptyGridBoxes[index];
   elementToEdit.innerText = chooseNewTileNumber();
   elementToEdit.classList.add("grid-box-tile");
-};
+  elementToEdit.classList.add("new");
+}
 
 function moveBox(boxFrom, boxTo) { 
 // boxFrom -current box; boxTo -where it will move to
@@ -40,12 +48,17 @@ function moveBox(boxFrom, boxTo) {
         // boxTo's number is same as boxFrom's -> merge boxFrom's and boxTo's numbers
         // 1 - boxTo's number * 2
         boxTo.innerText = Number(boxTo.innerText)*2;
+          // and add that to score
+        score += Number(boxTo.innerText);
         // 2 - remove boxFrom's number
         boxFrom.innerText = "";
         // 3 - add merged class to boxTo
         boxTo.classList.add("merged");
         // 4 - remove grid-box-tile from boxFrom
         boxFrom.classList.remove("grid-box-tile");
+        
+        // note that a move was made
+        madeMove = true;
         return boxTo; // final spot -> merged tile
       } else {
         // boxTo's number is different from boxFrom's -> do nothing
@@ -70,9 +83,11 @@ function moveBox(boxFrom, boxTo) {
       boxTo.classList.add("merged")
       boxFrom.classList.remove("merged");
     }
+    // note that a move was made
+    madeMove = true;
     return boxTo; 
   }
-};
+}
 
 function push(direction) {
   // direction - "left", "right", "up", "down"
@@ -125,11 +140,12 @@ function push(direction) {
       }
     }
   }
-};
+}
 
-function resetMerge() {
+function resetMergeNew() {
   for (gridBox of gridBoxes) {
     gridBox.classList.remove("merged");
+    gridBox.classList.remove("new");
   }
 }
 
@@ -143,9 +159,18 @@ function resetNumbers() {
 
 function startNewGame() {
   resetNumbers();
-  resetMerge();
+  resetMergeNew();
   createNewTile();
   createNewTile();
+  score = 0;
+}
+
+function updateScores() {
+  scoreUI.innerText = score;
+  if (score > highscore) {
+    highscore = score;
+  }
+  highscoreUI.innerText = highscore;
 }
 
 // event listeners
@@ -154,21 +179,18 @@ document.querySelector("button").addEventListener("click", function() {
 });
 
 document.addEventListener("keydown", function(e) {
-  // if ((e.key != "ArrowLeft") || (e.key != "ArrowRight") || (e.key != "ArrowUp") || (e.key != "ArrowDown")) {
-  //   // ignore if not arrow key
-  //   return;
-  // }
-  
-  if (e.key == "ArrowLeft") {
-    push("left");
-  } else if (e.key == "ArrowRight") {
-    push("right");
-  } else if (e.key == "ArrowDown") {
-    push("down");
-  } else if (e.key == "ArrowUp") {
-    push("up");
+  if (!e.key.includes("Arrow")) {
+    // ignore if not arrow key
+    return;
   }
+  resetMergeNew(); 
+  push(e.key.slice(5).toLowerCase());
+  
+  if (madeMove) {
   createNewTile();
-  resetMerge();
+  updateScores();
+  // reset madeMove to false
+  madeMove = false;
+  }
   return;
 })

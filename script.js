@@ -23,8 +23,47 @@ function createNewTile() {
   elementToEdit.classList.add("grid-box-tile");
 }
 
-function moveLeft() {
-  
+
+function moveBox(boxFrom, boxTo) { 
+// boxFrom -current box; boxTo -where it will move to
+// this will return true if box has reached final spot, false if not yet
+  if (!boxFrom.classList.contains("grid-box-tile")) {
+    // ignore boxFrom if it does not have a number
+    return true;   
+  }
+
+  // --- under this line means boxFrom contains a number ---
+  if (boxTo.classList.contains("grid-box-tile")) {
+    // boxTo has number
+    if (!(boxTo.classList.contains("merged"))) {
+      // boxTo's number is not a merged one
+      if (boxTo.innerText == boxFrom.innerText) {
+        // boxTo's number is same as boxFrom -> merge boxFrom's and boxTo's numbers
+        // 1 - boxTo's number * 2
+        boxTo.innerText = Number(boxTo.innerText)*2;
+        // 2 - remove boxFrom's number
+        boxFrom.innerText = "";
+        // 3 - add merged class to boxTo
+        boxTo.classList.add("merged");
+        // 4 - remove grid-box-tile from boxFrom
+        boxFrom.classList.remove("grid-box-tile");
+        return true; // final spot -> merged tile
+      }
+    } else {
+      // boxTo's number is a merged one
+      return true 
+    }
+
+  } else {
+    // boxTo doesn't have number
+    // 1 - move number
+    boxTo.innerText = boxFrom.innerText;
+    boxFrom.innerText = "";
+    // 2 - move class grid-box-tile
+    boxTo.classList.add("grid-box-tile");
+    boxFrom.classList.remove("grid-box-tile");
+    return false;
+  }
 }
 
 

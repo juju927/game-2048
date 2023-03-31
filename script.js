@@ -23,13 +23,12 @@ function createNewTile() {
   elementToEdit.classList.add("grid-box-tile");
 }
 
-
 function moveBox(boxFrom, boxTo) { 
 // boxFrom -current box; boxTo -where it will move to
-// this will return true if box has reached final spot, false if not yet
+// returns boxTo 
   if (!boxFrom.classList.contains("grid-box-tile")) {
     // ignore boxFrom if it does not have a number
-    return true; 
+    return boxTo; 
   }
 
   // --- under this line means boxFrom contains a number ---
@@ -47,29 +46,37 @@ function moveBox(boxFrom, boxTo) {
         boxTo.classList.add("merged");
         // 4 - remove grid-box-tile from boxFrom
         boxFrom.classList.remove("grid-box-tile");
-        return true; // final spot -> merged tile
+        return boxTo; // final spot -> merged tile
       } else {
         // boxTo's number is different from boxFrom's -> do nothing
-        return true; 
+        return boxTo; 
       }
     } else {
-      // boxTo's number is a merged one
-      return true;
+      // boxTo's number is a merged one -> do nothing
+      return boxTo;
     }
   } else {
-    // boxTo doesn't have number
+    // boxTo doesn't have number -> take boxTo's spot
     // 1 - move number
     boxTo.innerText = boxFrom.innerText;
     boxFrom.innerText = "";
     // 2 - move class grid-box-tile
     boxTo.classList.add("grid-box-tile");
     boxFrom.classList.remove("grid-box-tile");
-    return false; 
+    return boxTo; 
   }
 }
 
+const rowOne = document.querySelectorAll(".row1");
+console.log(rowOne);
 
-
-
+for (let i = 1; i < rowOne.length; i++) {
+  let j = i;
+  console.log(i);
+  while (!moveBox(rowOne[j], rowOne[j-1]).classList.contains("col1")) {
+    j--;
+    console.log(`from: ${rowOne[j]} to: ${rowOne[j-1]} j is ${j}`);
+  }
+};
 
 // event listeners

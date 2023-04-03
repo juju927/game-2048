@@ -22,21 +22,21 @@ This game was written in HTML, CSS, and JavaScript.
 
 5. Writing game logic on js
 
-  i.    Creating const variables using DOM selectors on relevant html elements 
+  - Creating const variables using DOM selectors on relevant html elements 
 
-  ii.   createNewtile() for tile creation 
+  - createNewtile() for tile creation 
 
-  iii.  moveBox(boxFrom, boxTo) that allows tiles to check adjacent tiles for merges/ movement/ neither
+  - moveBox(boxFrom, boxTo) that allows tiles to check adjacent tiles for merges/ movement/ neither
 
-  iv.   push(), that loops moveBox() to move multiple tiles in the direction specified
+  - push(), that loops moveBox() to move multiple tiles in the direction specified
 
 6. clean up
 
-  i.    Linking event listeners to functions
+  - Linking event listeners to functions
 
-  ii.   Updating of score
+  - Updating of score
 
-  iii.  Allowing restarting of the game
+  - Allowing restarting of the game
 
 ## sketches of wireframes
 

@@ -257,3 +257,16 @@ document.addEventListener("keydown", function(e) {
   }
   return;
 })
+
+
+document.querySelector('span').addEventListener("click", function(e) {
+  document.querySelector('.game-instructions').scrollIntoView();
+  document.querySelector('.game-instructions').classList.add("highlight");
+  console.log("a", document.querySelector('.game-instructions').classList);
+  return;
+});
+
+document.addEventListener("animationend", function(e) {
+  document.querySelector('.game-instructions').classList.remove("highlight");
+  console.log("b", document.querySelector('.game-instructions').classList);
+});

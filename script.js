@@ -26,6 +26,8 @@ function createNewTile() {
   // get a random index from the array of empty grid boxes
   const index = Math.floor(Math.random() * emptyGridBoxes.length); 
   const elementToEdit = emptyGridBoxes[index];
+
+  // put a number in it
   elementToEdit.innerText = chooseNewTileNumber();
   elementToEdit.classList.add("tile-"+elementToEdit.innerText);
   elementToEdit.classList.add("grid-box-tile");
@@ -182,6 +184,9 @@ function updateScores() {
   highscoreUI.innerText = highscore;
 }
 
+
+
+
 // event listeners
 document.querySelector("button").addEventListener("click", function() {
   startNewGame();
@@ -194,9 +199,13 @@ document.addEventListener("keydown", function(e) {
     // ignore if not arrow key
     return;
   }
+
+  // remove all merge/ new class states
   resetMergeNew(); 
+  // calls the push function with the input's direction as an input
   push(e.key.slice(5).toLowerCase());
   
+  // if user made a move, create a new tile and update the score
   if (madeMove) {
   createNewTile();
   updateScores();

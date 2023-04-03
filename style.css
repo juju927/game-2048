@@ -2,12 +2,12 @@
   --main-bg-col: #faf8ef;
   --title-text-col: #776e65;
   --label-bg-col: #bbada0;
-  --grid-border-col:#bbada0;
+  --grid-border-col: #bbada0;
   --grid-bg-col: rgba(238, 228, 218, 100);
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   background-color: var(--main-bg-col);
   color: #776e65;
 
@@ -49,7 +49,7 @@ header,
   flex-grow: 3;
 }
 
-.score-container, 
+.score-container,
 .highscore-container {
   display: block;
   background-color: var(--label-bg-col);
@@ -64,7 +64,7 @@ header,
   font-size: 0.8rem;
   line-height: 1rem;
   font-weight: 800;
-  margin-top: 10%; 
+  margin-top: 10%;
 }
 
 .score-num {
@@ -94,7 +94,7 @@ button {
   border: none;
   border-radius: 3px;
   font-size: 1rem;
-  font-weight:bold;
+  font-weight: bold;
   height: 40px;
   width: 125px;
   color: white;
@@ -142,7 +142,6 @@ span:hover {
   font-weight: 800;
   text-align: center;
   color: var(--title-text-col);
-  background-color: lightskyblue;
   z-index: 100;
 }
 
@@ -153,8 +152,14 @@ span:hover {
 }
 
 @keyframes pop-new {
-  0%    { font-size: 0rem; scale: 0; }
-  100%  { font-size: 3rem; scale: 1; }
+  0% {
+    font-size: 0rem;
+    scale: 0;
+  }
+  100% {
+    font-size: 3rem;
+    scale: 1;
+  }
 }
 
 .merged {
@@ -164,8 +169,14 @@ span:hover {
 }
 
 @keyframes pop-merged {
-  0%    { font-size: 4rem; scale: 1.2; }
-  100%  { font-size: 3rem; scale: 1; }
+  0% {
+    font-size: 4rem;
+    scale: 1.2;
+  }
+  100% {
+    font-size: 3rem;
+    scale: 1;
+  }
 }
 
 .tile-2 {
@@ -233,8 +244,12 @@ span:hover {
 }
 
 @keyframes fade-in {
-  0% { background-color: rgba(255, 255, 255, 0)}
-  100% { background-color: rgba(255, 255, 255, 0.517)}
+  0% {
+    background-color: rgba(255, 255, 255, 0);
+  }
+  100% {
+    background-color: rgba(255, 255, 255, 0.517);
+  }
 }
 
 .game-over-screen p {
@@ -251,6 +266,10 @@ span:hover {
 }
 
 @keyframes highlight-it {
-  0% { background-color: rgba(2, 251, 255, 100); }
-  100% { background-color: rgba(2, 251, 255, 0);}
+  0% {
+    background-color: rgba(2, 251, 255, 100);
+  }
+  100% {
+    background-color: rgba(2, 251, 255, 0);
+  }
 }

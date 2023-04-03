@@ -16,7 +16,12 @@ const gameOverScreen = document.querySelector('.game-over-screen');
 // functions
 function chooseNewTileNumber() {
   // return either 2 or 4
-  return [2, 4][Math.round(Math.random())];
+  if (Math.round(Math.random()*10) <= 8) {
+    // random number from 0 to 9
+    return 2;
+  } else {
+    return 4;
+  }
 }
 
 function createNewTile() {
@@ -220,6 +225,7 @@ function checkGameOver() {
 }
 
 // event listeners
+// new game OR try again buttons - reset the game
 for (eachButton of buttons) {
   eachButton.addEventListener("click", function() {
     startNewGame();
@@ -230,6 +236,7 @@ for (eachButton of buttons) {
   });
 };
 
+// arrow keys buttons - push the tiles
 document.addEventListener("keydown", function(e) {
   if (!e.key.includes("Arrow")) {
     // ignore if not arrow key
@@ -258,15 +265,14 @@ document.addEventListener("keydown", function(e) {
   return;
 })
 
-
+// when 'how to play' is clicked, highlight and scroll to (if applicable) the instructions
 document.querySelector('span').addEventListener("click", function(e) {
   document.querySelector('.game-instructions').scrollIntoView();
   document.querySelector('.game-instructions').classList.add("highlight");
-  console.log("a", document.querySelector('.game-instructions').classList);
   return;
 });
 
+// when highlight animation ends, remove the highlight class
 document.addEventListener("animationend", function(e) {
   document.querySelector('.game-instructions').classList.remove("highlight");
-  console.log("b", document.querySelector('.game-instructions').classList);
 });

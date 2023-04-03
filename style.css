@@ -221,7 +221,7 @@ span:hover {
   border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.517);
 
-  display: flex; /* flex for show */
+  display: none; /* flex for show */
   flex-direction: column;
   align-items: center;
   justify-content: center;

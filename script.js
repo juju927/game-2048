@@ -2,12 +2,16 @@
 let madeMove = false;
 let score = 0;
 let highscore = 0;
+let hahaAngy = 0;
 
 const gameGridEl = document.querySelector('.game-grid');
 const gridBoxes = document.querySelectorAll('.grid-box');
 
 const scoreUI = document.querySelector('#score');
 const highscoreUI = document.querySelector('#highscore');
+
+const buttons = document.querySelectorAll('button');
+const gameOverScreen = document.querySelector('.game-over-screen');
 
 // functions
 function chooseNewTileNumber() {
@@ -184,15 +188,47 @@ function updateScores() {
   highscoreUI.innerText = highscore;
 }
 
+function checkGameOver() {
+  // check through all boxes
+  for (box of gridBoxes) {
+    if (!box.classList.contains('grid-box-tile')) {
+      // if even one doesn't have a number
+      return false;
+    }
+  }
 
-
+  // check if every adjacent box is the same number
+  for (let i = 1; i <= 4; i++) {
+    // loops through selecting a row, 4 times
+    const row = document.querySelectorAll(".row"+i);
+    // in the same loop, select a column 4 times
+    const col = document.querySelectorAll(".col"+i);
+    for (let j = 0; j < 3; j++) {
+      // loop through 1st to 3rd box in that row/ col
+      if (row[j].innerText == row[j+1].innerText) {
+        // if number in the two side-by-side squares are same
+        return false;
+      }
+      if (col[j].innerText == col[j+1].innerText) {
+        // if number in the two top-and-bottom squares are same
+        return false;
+      }       
+    }
+  }
+  console.log("DEATH");
+  return true;
+}
 
 // event listeners
-document.querySelector("button").addEventListener("click", function() {
-  startNewGame();
-  score = 0;
-  updateScores();
-});
+for (eachButton of buttons) {
+  eachButton.addEventListener("click", function() {
+    startNewGame();
+    score = 0;
+    updateScores();
+    gameOverScreen.style.display = "none";
+    hahaAngy = 0;
+  });
+};
 
 document.addEventListener("keydown", function(e) {
   if (!e.key.includes("Arrow")) {
@@ -205,12 +241,19 @@ document.addEventListener("keydown", function(e) {
   // calls the push function with the input's direction as an input
   push(e.key.slice(5).toLowerCase());
   
-  // if user made a move, create a new tile and update the score
   if (madeMove) {
-  createNewTile();
-  updateScores();
-  // reset madeMove to false
-  madeMove = false;
+    // if user made a move, create a new tile and update the score
+    createNewTile();
+    updateScores();
+    // reset madeMove to false
+    madeMove = false;
+  } else if (checkGameOver()) {
+    // if game is actually over, add to haha angry count to let them struggle
+    hahaAngy++;
+    // once they've struggled at least 3 times, show game over screen
+    if (hahaAngy >= 3) {
+      gameOverScreen.style.display = "flex";     
+    }
   }
   return;
 })

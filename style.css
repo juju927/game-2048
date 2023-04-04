@@ -267,9 +267,9 @@ span:hover {
 
 @keyframes highlight-it {
   0% {
-    background-color: rgba(2, 251, 255, 100);
+    background-color: rgba(242, 160, 44, 100);
   }
   100% {
-    background-color: rgba(2, 251, 255, 0);
+    background-color: rgba(242, 160, 44, 0);
   }
 }

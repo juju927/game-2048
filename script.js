@@ -276,3 +276,5 @@ document.querySelector('span').addEventListener("click", function(e) {
 document.addEventListener("animationend", function(e) {
   document.querySelector('.game-instructions').classList.remove("highlight");
 });
+
+window.onload = startNewGame;

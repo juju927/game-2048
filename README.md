@@ -20,23 +20,23 @@ This game was written in HTML, CSS, and JavaScript.
 
 4. Styling each html element
 
-5. Writing game logic on js
+5. Writing the main code in js
 
-  - Creating const variables using DOM selectors on relevant html elements 
+    - Creating const variables using DOM selectors on relevant html elements 
 
-  - createNewtile() for tile creation 
+    - Game logic part 1: Function for creating new tiles - **createNewtile()**
 
-  - moveBox(boxFrom, boxTo) that allows tiles to check adjacent tiles for merges/ movement/ neither
+    - Game logic part 2: Function for moving tiles after checking adjacent tiles for merges/ movement/ neither - **moveBox(boxFrom, boxTo)**
 
-  - push(), that loops moveBox() to move multiple tiles in the direction specified
+    - Game logic part 3: Function that loops moveBox() to move multiple tiles in the direction specified - **push(direction)**
 
-6. clean up
+    - Linking event listeners to functions
 
-  - Linking event listeners to functions
+    - Updating of score
 
-  - Updating of score
+    - Checking winning and losing of game
 
-  - Allowing restarting of the game
+    - Restarting of the game
 
 ## sketches of wireframes
 

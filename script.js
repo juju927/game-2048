@@ -3,6 +3,7 @@ let madeMove = false;
 let score = 0;
 let highscore = 0;
 let hahaAngy = 0;
+let isWin = false;
 
 const gameGridEl = document.querySelector('.game-grid');
 const gridBoxes = document.querySelectorAll('.grid-box');
@@ -12,6 +13,7 @@ const highscoreUI = document.querySelector('#highscore');
 
 const buttons = document.querySelectorAll('button');
 const gameOverScreen = document.querySelector('.game-over-screen');
+const winScreen = document.querySelector('.you-win-screen');
 
 // functions
 function chooseNewTileNumber() {
@@ -64,6 +66,10 @@ function moveBox(boxFrom, boxTo) {
         boxTo.classList.add("tile-"+boxTo.innerText);
           // and add that to score
         score += Number(boxTo.innerText);
+          // and check for win condition!
+        if (boxTo.innerText == "2048") {
+          isWin = true;
+        }
         // 2 - remove boxFrom's number
         boxFrom.classList.remove("tile-"+boxFrom.innerText);
         boxFrom.innerText = "";
@@ -232,16 +238,19 @@ for (eachButton of buttons) {
     score = 0;
     updateScores();
     gameOverScreen.style.display = "none";
+    winScreen.style.display = "none";
+    isWin = false;
     hahaAngy = 0;
   });
 };
 
 // arrow keys buttons - push the tiles
 document.addEventListener("keydown", function(e) {
-  if (!e.key.includes("Arrow")) {
-    // ignore if not arrow key
+  if (!e.key.includes("Arrow") || isWin) {
+    // ignore if not arrow key OR game won
     return;
   }
+
 
   // remove all merge/ new class states
   resetMergeNew(); 
@@ -252,6 +261,10 @@ document.addEventListener("keydown", function(e) {
     // if user made a move, create a new tile and update the score
     createNewTile();
     updateScores();
+    if (isWin) {
+      // if user won (hit 2048), show the win screen
+      winScreen.style.display = "flex";
+    }
     // reset madeMove to false
     madeMove = false;
   } else if (checkGameOver()) {

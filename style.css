@@ -221,9 +221,11 @@ span:hover {
 
 .tile-2048 {
   background-color: deeppink;
+  color: gold;
 }
 
-.game-over-screen {
+.game-over-screen,
+.you-win-screen {
   position: absolute;
   left: 0;
   top: 0;
@@ -252,7 +254,9 @@ span:hover {
   }
 }
 
-.game-over-screen p {
+.game-over-screen p,
+.you-win-screen p {
+  text-align: center;
   font-weight: 700;
   font-size: 3.5rem;
   line-height: 3.5rem;
